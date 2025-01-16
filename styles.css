@@ -1,0 +1,228 @@
+/* Variables globales */
+:root {
+  --primary-color: #001F3F;
+  --secondary-color: #4682B4;
+  --background-color: #f5f5f5;
+  --white: #ffffff;
+  --gray-light: #e0e0e0;
+  --gray: #666666;
+  --success: #4CAF50;
+  --error: #f44336;
+}
+
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--background-color);
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Utilidades */
+.hidden {
+  display: none !important;
+}
+
+/* Contenedores principales */
+.screen {
+  min-height: 100vh;
+  padding: 20px;
+  padding-bottom: 80px; /* Espacio para la navbar */
+}
+
+/* Estilos de formularios */
+.input-group {
+  margin-bottom: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--gray-light);
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Botones */
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  padding: 0;
+  text-decoration: underline;
+}
+
+/* Login y Signup */
+.login-container,
+.signup-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.error-message {
+  color: var(--error);
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+/* Home Screen */
+.balance-container {
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.balance-amount {
+  font-size: 36px;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin: 10px 0;
+}
+
+/* Barra de progreso */
+.progress-container {
+  margin: 20px 0;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: var(--gray-light);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+/* Historial de transacciones */
+.transaction-item {
+  padding: 15px 0;
+  border-bottom: 1px solid var(--gray-light);
+  display: flex;
+  justify-content: space-between;
+}
+
+.deposit {
+  color: var(--success);
+}
+
+.withdrawal {
+  color: var(--error);
+}
+
+/* Notificaciones */
+.notification-card {
+  background-color: var(--white);
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.notification-title {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.notification-date {
+  font-size: 12px;
+  color: var(--gray);
+}
+
+/* Votaciones */
+.project-card {
+  background-color: var(--white);
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.project-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.vote-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--primary-color);
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  z-index: 1000;
+}
+
+.nav-btn {
+  color: var(--white);
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4px;
+}

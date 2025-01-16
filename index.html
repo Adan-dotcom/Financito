@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma Comunitaria de Financiamiento</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="loginScreen" class="screen">
+            <div class="login-container">
+                <h2>Iniciar Sesión</h2>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="tel" id="phoneLogin" placeholder="Número de teléfono" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="passwordLogin" placeholder="Contraseña" required>
+                    </div>
+                    <div class="error-message" id="loginError"></div>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <button type="button" class="btn btn-secondary" id="goToSignup">Registrarse</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Signup Screen -->
+        <div id="signupScreen" class="screen hidden">
+            <div class="signup-container">
+                <h2>Registro</h2>
+                <form id="signupForm">
+                    <div class="input-group">
+                        <input type="text" id="nameSignup" placeholder="Nombres" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="lastNameSignup" placeholder="Apellidos" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="tel" id="phoneSignup" placeholder="Número de teléfono" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="passwordSignup" placeholder="Contraseña" required>
+                    </div>
+                    <div class="address-inputs">
+                        <input type="text" id="street" placeholder="Calle">
+                        <input type="text" id="number" placeholder="Número">
+                        <input type="text" id="colony" placeholder="Colonia">
+                        <input type="text" id="city" placeholder="Municipio">
+                        <input type="text" id="state" placeholder="Estado">
+                    </div>
+                    <div class="file-inputs">
+                        <label>INE Frente:
+                            <input type="file" id="ineFront" accept="image/*">
+                        </label>
+                        <label>INE Reverso:
+                            <input type="file" id="ineBack" accept="image/*">
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                    <button type="button" class="btn btn-secondary" id="backToLogin">Volver al Login</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Home Screen -->
+        <div id="homeScreen" class="screen hidden">
+            <div class="balance-container">
+                <h2>Balance</h2>
+                <p class="balance-amount" id="balanceAmount">$0.00</p>
+                <div class="progress-container">
+                    <p>Progreso hacia recompensa</p>
+                    <div class="progress-bar">
+                        <div class="progress" id="rewardProgress"></div>
+                    </div>
+                    <p class="progress-text" id="rewardAmount">$0 para siguiente recompensa</p>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="depositBtn">Depositar</button>
+                    <button class="btn btn-outline" id="withdrawBtn">Retirar</button>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <button class="btn btn-text" id="toggleHistory">Ver historial</button>
+                <div id="transactionHistory" class="hidden">
+                    <h3>Historial de movimientos</h3>
+                    <div id="transactionsList"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications Screen -->
+        <div id="votingScreen" class="screen hidden">
+            <div class="voting-container">
+                <h2 class="section-title">Solicitudes de Préstamo Pendientes</h2>
+                
+                <div id="projectsList" class="loan-requests-grid">
+                    <!-- Los préstamos se insertarán dinámicamente aquí -->
+                    <div class="no-loans hidden">
+                        No hay solicitudes de préstamo pendientes
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Template para las tarjetas de préstamo -->
+        <template id="loanCardTemplate">
+            <div class="loan-card">
+                <div class="loan-header">
+                    <div class="requester-info">
+                        <i class="user-icon"></i>
+                        <span class="requester-name"></span>
+                    </div>
+                    <div class="loan-id"></div>
+                </div>
+                
+                <div class="loan-content">
+                    <div class="loan-details">
+                        <div class="loan-amount">
+                            <i class="money-icon"></i>
+                            <span class="amount-text"></span>
+                        </div>
+                        <div class="loan-duration">
+                            <i class="clock-icon"></i>
+                            <span class="duration-text"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="voting-section">
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <div class="progress-stats">
+                                <span class="approval-rate"></span>
+                                <span class="total-votes"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="voting-buttons">
+                            <button class="approve-btn">Aprobar</button>
+                            <button class="reject-btn">Rechazar</button>
+                        </div>
+                        <div class="voted-message hidden">
+                            Ya has votado en esta solicitud
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Voting Screen -->
+        <div id="votingScreen" class="screen hidden">
+            <h2>Votaciones</h2>
+            <div id="projectsList" class="projects-container"></div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <button class="nav-btn" data-screen="home">
+                <svg class="nav-icon"><!-- Home icon --></svg>
+                <span>Inicio</span>
+            </button>
+            <button class="nav-btn" data-screen="notifications">
+                <svg class="nav-icon"><!-- Bell icon --></svg>
+                <span>Avisos</span>
+            </button>
+            <button class="nav-btn" data-screen="voting">
+                <svg class="nav-icon"><!-- Vote icon --></svg>
+                <span>Votar</span>
+            </button>
+            <button class="nav-btn" id="logoutBtn">
+                <svg class="nav-icon"><!-- Logout icon --></svg>
+                <span>Salir</span>
+            </button>
+        </nav>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
